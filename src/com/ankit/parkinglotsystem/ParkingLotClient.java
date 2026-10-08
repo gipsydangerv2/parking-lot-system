@@ -79,40 +79,40 @@ public class ParkingLotClient {
         ParkingLot parkingLot = new ParkingLot(parkingBuilding, entranceGate, exitGate);
 
         Vehicle vehicle1 = new Vehicle("ABC-120-CDF", VehicleType.TWO_WHEELER);
-        Ticket ticket1 = parkingLot.vehicleArrives(vehicle1);
+        Ticket ticket1 = parkingLot.parkVehicle(vehicle1);
 
         Vehicle vehicle2 = new Vehicle("ACB-200-CDF", VehicleType.FOUR_WHEELER);
-        Ticket ticket2 = parkingLot.vehicleArrives(vehicle2);
+        Ticket ticket2 = parkingLot.parkVehicle(vehicle2);
 
         Vehicle vehicle3 = new Vehicle("ABC-121-CDF", VehicleType.TWO_WHEELER);
-        parkingLot.vehicleArrives(vehicle3);
+        parkingLot.parkVehicle(vehicle3);
 
         Vehicle vehicle4 = new Vehicle("ACB-201-CDF", VehicleType.FOUR_WHEELER);
-        parkingLot.vehicleArrives(vehicle4);
+        parkingLot.parkVehicle(vehicle4);
 
         Vehicle vehicle5 = new Vehicle("ABC-122-CDF", VehicleType.TWO_WHEELER);
-        parkingLot.vehicleArrives(vehicle5);
+        parkingLot.parkVehicle(vehicle5);
 
         Vehicle vehicle6 = new Vehicle("ACB-202-CDF", VehicleType.FOUR_WHEELER);
-        parkingLot.vehicleArrives(vehicle6);
+        parkingLot.parkVehicle(vehicle6);
 
         Vehicle vehicle7 = new Vehicle("ABC-123-CDF", VehicleType.TWO_WHEELER);
-        parkingLot.vehicleArrives(vehicle7);
+        parkingLot.parkVehicle(vehicle7);
 
         Vehicle vehicle8 = new Vehicle("ACB-204-CDF", VehicleType.FOUR_WHEELER);
-        parkingLot.vehicleArrives(vehicle8);
+        parkingLot.parkVehicle(vehicle8);
 
         Vehicle vehicle9 = new Vehicle("ABC-125-CDF", VehicleType.TWO_WHEELER);
-        parkingLot.vehicleArrives(vehicle9);
+        parkingLot.parkVehicle(vehicle9);
 
         Vehicle vehicle10 = new Vehicle("ACB-206-CDF", VehicleType.FOUR_WHEELER);
-        parkingLot.vehicleArrives(vehicle10);
+        parkingLot.parkVehicle(vehicle10);
 
         Vehicle vehicle11 = new Vehicle("ACB-209-CDF", VehicleType.FOUR_WHEELER);
-        parkingLot.vehicleArrives(vehicle11);
+        parkingLot.parkVehicle(vehicle11);
 
-        parkingLot.vehicleExists(ticket1, upiPayment);
-        parkingLot.vehicleExists(ticket2, new CardPayment());
+        parkingLot.unparkVehicle(ticket1, upiPayment);
+        parkingLot.unparkVehicle(ticket2, new CardPayment());
 
     }
 

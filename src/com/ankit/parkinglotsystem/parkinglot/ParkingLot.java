@@ -15,11 +15,11 @@ public class ParkingLot {
         this.exitGate = exitGate;
     }
 
-    public Ticket vehicleArrives(Vehicle vehicle) {
+    public Ticket parkVehicle(Vehicle vehicle) {
         return entranceGate.enter(building, vehicle);
     }
 
-    public void vehicleExists(Ticket ticket, Payment payment) {
+    public void unparkVehicle(Ticket ticket, Payment payment) {
         exitGate.completeExit(building, ticket, payment);
     }
 }

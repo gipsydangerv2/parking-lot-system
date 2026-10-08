@@ -6,6 +6,6 @@ import com.ankit.parkinglotsystem.model.Vehicle;
 public class EntranceGate {
 
     public Ticket enter(ParkingBuilding building, Vehicle vehicle) {
-        return building.allocate(vehicle);
+        return building.allocateParkingSpot(vehicle);
     }
 }

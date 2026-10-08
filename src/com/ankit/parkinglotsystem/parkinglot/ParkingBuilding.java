@@ -14,21 +14,19 @@ public class ParkingBuilding {
         this.levels = levels;
     }
 
-    public Ticket allocate(Vehicle vehicle) {
+    public Ticket allocateParkingSpot(Vehicle vehicle) {
         for (ParkingLevel level : levels) {
-            if (level.hasAvailability(vehicle.getVehicleType())) {
                 ParkingSpot spot = level.park(vehicle.getVehicleType());
                 if (spot != null) {
                     Ticket ticket = new Ticket(vehicle, level, spot);
                     System.out.println("Parking allocated at level : "+ level + ", spot: " + spot);
                     return ticket;
                 }
-            }
         }
         throw new RuntimeException("Parking is full !!!");
     }
 
-    public void release(Ticket ticket) {
+    public void releaseParkingSpot(Ticket ticket) {
         ticket.getLevel()
                 .unPark(ticket.getVehicle().getVehicleType(),
                 ticket.getSpot());
