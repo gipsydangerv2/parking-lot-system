@@ -10,8 +10,12 @@ import java.util.Scanner;
 public class TicTacToeGame {
     private Deque<Player> players;
     private Board gameBoard;
+    private final Scanner scanner = new Scanner(System.in);
 
-    public void initializeGame() {
+    public TicTacToeGame() {
+        initializeGame();
+    }
+    private void initializeGame() {
         players = new LinkedList<>();
 
         PlayingPiece crossPiece = new PlayingPieceX();
@@ -48,26 +52,37 @@ public class TicTacToeGame {
             // Read the user input
             System.out.println(currentPlayer.getName() +
                     "[" + currentPlayer.getPlayingPiece().getPieceType()+ "] - Please enter [row, column]: ");
-            Scanner scanner = new Scanner(System.in);
-            String s = scanner.nextLine();
-            String[] values = s.split(",");
-            int inputRow = Integer.valueOf(values[0]);
-            int inputColumn = Integer.valueOf(values[1]);
 
-            // Place the piece on the board
-            boolean validMove = gameBoard.addPiece(inputRow, inputColumn, currentPlayer.getPlayingPiece());
-            if (!validMove) {
-                // Invalid Move: Player cannot put the piece in this cell, player has to choose another cell
-                System.out.println("Incorrect position chosen, try again !!!");
-                players.add(currentPlayer);
-                continue;
-            }
-            players.addLast(currentPlayer);
+            try {
+                String[] values = scanner.nextLine().split(",");
 
-            // check if the valid move is a winning move or not
-            boolean isWinner = checkForWinner(inputRow, inputColumn, currentPlayer.getPlayingPiece().getPieceType());
-            if (isWinner) {
-                return currentPlayer.getName();
+                if (values.length != 2) {
+                    System.out.println("Invalid input. Use row,column");
+                    players.addLast(currentPlayer);
+                    continue;
+                }
+
+                int inputRow = Integer.valueOf(values[0]);
+                int inputColumn = Integer.valueOf(values[1]);
+
+                // Place the piece on the board
+                boolean validMove = gameBoard.addPiece(inputRow, inputColumn, currentPlayer.getPlayingPiece());
+                if (!validMove) {
+                    // Invalid Move: Player cannot put the piece in this cell, player has to choose another cell
+                    System.out.println("Incorrect position chosen, try again !!!");
+                    players.add(currentPlayer);
+                    continue;
+                }
+                players.addLast(currentPlayer);
+
+                // check if the valid move is a winning move or not
+                boolean isWinner = checkForWinner(inputRow, inputColumn, currentPlayer.getPlayingPiece().getPieceType());
+                if (isWinner) {
+                    return currentPlayer.getName();
+                }
+            } catch (NumberFormatException ex) {
+                System.out.println("Please enter valid numbers");
+                players.addLast(currentPlayer);
             }
         }
         return "Tie";
@@ -79,10 +94,10 @@ public class TicTacToeGame {
         boolean diagonalMatch = true;
         boolean antiDiagonalMatch = true;
 
-        PlayingPiece[][] board = gameBoard.getBoard();
         // checkRow
         for (int idx = 0; idx < gameBoard.getSize(); idx++) {
-            if (board[row][idx] == null || board[row][idx].getPieceType() != pieceType) {
+            PlayingPiece cellPiece = gameBoard.getPiece(row, idx);
+            if (cellPiece == null || cellPiece.getPieceType() != pieceType) {
                 rowMatch = false;
                 break;
             }
@@ -90,7 +105,8 @@ public class TicTacToeGame {
 
         // checkColumn
         for (int idx = 0; idx < gameBoard.getSize(); idx++) {
-            if (board[idx][column] == null || board[idx][column].getPieceType() != pieceType) {
+            PlayingPiece cellPiece = gameBoard.getPiece(idx, column);
+            if (cellPiece == null || cellPiece.getPieceType() != pieceType) {
                 columnMatch = false;
                 break;
             }
@@ -98,7 +114,8 @@ public class TicTacToeGame {
 
         // checkDiagonally
         for (int idx = 0, idx2 = 0; idx < gameBoard.getSize(); idx++, idx2 ++) {
-            if (board[idx][idx2] == null || board[idx][idx2].getPieceType() != pieceType) {
+            PlayingPiece cellPiece = gameBoard.getPiece(idx, idx2);
+            if (cellPiece == null || cellPiece.getPieceType() != pieceType) {
                 diagonalMatch = false;
                 break;
             }
@@ -106,7 +123,8 @@ public class TicTacToeGame {
 
         // check Anti-Diagonally
         for (int idx = 0, idx2 = gameBoard.getSize() - 1; idx < gameBoard.getSize(); idx++, idx2 --) {
-            if (board[idx][idx2] == null || board[idx][idx2].getPieceType() != pieceType) {
+            PlayingPiece cellPiece = gameBoard.getPiece(idx, idx2);
+            if (cellPiece == null || cellPiece.getPieceType() != pieceType) {
                 antiDiagonalMatch = false;
                 break;
             }

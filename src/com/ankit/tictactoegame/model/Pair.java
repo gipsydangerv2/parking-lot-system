@@ -13,16 +13,8 @@ public class Pair<K,V> {
         return valueOne;
     }
 
-    public void setValueOne(K valueOne) {
-        this.valueOne = valueOne;
-    }
-
-    public V getValueTwo() {
+      public V getValueTwo() {
         return valueTwo;
-    }
-
-    public void setValueTwo(V valueTwo) {
-        this.valueTwo = valueTwo;
     }
 
     @Override

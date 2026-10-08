@@ -1,8 +1,8 @@
 package com.ankit.tictactoegame.model;
 
 public class Player {
-    private String name;
-    private PlayingPiece playingPiece;
+    private final String name;
+    private final PlayingPiece playingPiece;
 
     public Player(String name, PlayingPiece playingPiece) {
         this.name = name;
@@ -13,16 +13,8 @@ public class Player {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public PlayingPiece getPlayingPiece() {
         return playingPiece;
-    }
-
-    public void setPlayingPiece(PlayingPiece playingPiece) {
-        this.playingPiece = playingPiece;
     }
 
     @Override
