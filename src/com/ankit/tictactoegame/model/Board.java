@@ -13,11 +13,17 @@ public class Board {
     }
 
     public boolean addPiece(int row, int col, PlayingPiece playingPiece) {
-        if (board[row][col] != null) {
+        if (!isValidPosition(row, col) || board[row][col] != null) {
             return false;
         }
+
         board[row][col] = playingPiece;
         return true;
+    }
+
+    private boolean isValidPosition(int row, int col) {
+        return row >= 0 && row < size &&
+                col >= 0 && col < size;
     }
 
     public void printBoard() {
@@ -49,7 +55,7 @@ public class Board {
         return size;
     }
 
-    public PlayingPiece[][] getBoard() {
-        return board;
+    public PlayingPiece getPiece(int row, int col) {
+        return board[row][col];
     }
 }

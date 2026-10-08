@@ -6,7 +6,6 @@ public class TicTacToeClient {
     public static void main(String[] args) {
         System.out.println("<<<<<<<<<<<<<<< TicTacToe Game >>>>>>>>>>>>>>>>>>>>");
         TicTacToeGame game = new TicTacToeGame();
-        game.initializeGame();
         System.out.println("game winner is " + game.startGame());
     }
 }
