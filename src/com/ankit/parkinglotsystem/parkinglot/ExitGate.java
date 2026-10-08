@@ -18,7 +18,7 @@ public class ExitGate {
         if (!paymentStatus) {
             throw new RuntimeException("Payment Failed. Exit denied.... Please retry");
         }
-        building.release(ticket);
+        building.releaseParkingSpot(ticket);
         System.out.println("Exit successful. Gate Opened !!!");
     }
 
